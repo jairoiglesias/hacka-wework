@@ -205,6 +205,8 @@ module.exports = function(app) {
     db.property = []
     populateDb()
 
+    res.send('1')
+
   })
 
   app.get('/', (req, res) => {
