@@ -1,122 +1,182 @@
 
+
+// Simulação de banco de dados baseado em JSON
+
+var db = global
+
+db.interested = []
+db.property = []
+db.contracts = []
+db.novoContrato = 0
+
+db.property.push(
+  {
+    id: 1,
+    endereco: 'Rua Capitão Macedo, 42 - Vila Clementino',
+    valor: 3000,
+    alugado: false,
+    capacity: 3
+  },
+  {
+    id: 2,
+    endereco: 'Rua Arnold Astor Ferreira, 158 - Morumbi',
+    valor: 4200,
+    alugado: true,
+    capacity: 3
+  },
+  {
+    id: 3,
+    endereco: 'Avenida Joao Dias, 56 - Ana Rosa',
+    valor: 3000,
+    alugado: false,
+    capacity: 2
+  },
+  {
+    id: 4,
+    endereco: 'Rua Elionor Arantes, 1852 - Santo Amaro',
+    valor: 1500,
+    alugado: false,
+    capacity: 2
+  },
+  {
+    id: 5,
+    endereco: 'Rua Antonio Gilmedes, 147 - Jabaquara',
+    valor: 2200,
+    alugado: true,
+    capacity: 3
+  },
+  {
+    id: 6,
+    endereco: 'Avenida Sergio Lobo, 23 - Jabaquara',
+    valor: 1620,
+    alugado: true,
+    capacity: 2
+  },
+  {
+    id: 7,
+    endereco: 'Rua Tartaruga, 266 - São Caetano',
+    valor: 3900,
+    alugado: false,
+    capacity: 4
+  },
+  {
+    id: 8,
+    endereco: 'Rua Bundança, 39 - Tatuapé',
+    valor: 2500,
+    alugado: true,
+    capacity: 3
+  },
+  {
+    id: 9,
+    endereco: 'Avenida da Vitamina, 242 - Penha',
+    valor: 2500,
+    alugado: true,
+    capacity: 3
+  },
+  {
+    id: 10,
+    endereco: 'Rua João Carlos Macedo, 42 - Santa Cruz',
+    valor: 2600,
+    alugado: false,
+    capacity: 2
+  },
+  {
+    id: 11,
+    endereco: 'Rua Magalhaes, 180 - Vila Clementino',
+    valor: 1400,
+    alugado: true,
+    capacity: 2
+  }
+)
+
 module.exports = function(app) {
 
-  app.get('/', function(req, res){
-    res.send('ola')
-  })
+  // Adicionar um interesse em um imovel
+  app.post('/add_interest', (req, res) => {
 
-  app.get('/top5_comparativo_mes_fiat/:ano/:mes', function(req, res){
+    var nome = req.body.nome
+    var idImovel = req.body.idImovel
+    var valor = req.body.valor
 
-    var conn = require('./../libs/connectdb.js')()
-
-    var ano = req.params.ano
-    var mes = req.params.mes
-
-    var sql  = `
-
-      SELECT
-        empl_2015_2017.estado,
-        empl_2015_2017.MUNICIPIO,
-        empl_2015_2017.MARCA,
-        count(empl_2015_2017.ESTADO) AS TOTAL,
-      B.TOTAL AS TOTALGERAL
-      FROM
-      empl_2015_2017
-      INNER JOIN
-        (
-          SELECT
-            ANO_FABRICACAO,
-            MID(DATA_EMPLACAMENTO, '5', '2') AS MES,
-            estado,
-            MUNICIPIO,
-            count(estado) AS TOTAL
-          FROM
-            empl_2015_2017
-          where ANO_FABRICACAO = '${ano}' AND MID(DATA_EMPLACAMENTO, '5', '2') = '${mes}'
-          GROUP BY ANO_FABRICACAO, 
-          MID(DATA_EMPLACAMENTO, '5', '2'), estado, MUNICIPIO
-          ORDER BY count(estado) DESC
-          LIMIT 5
-        ) as B
-        ON empl_2015_2017.ANO_FABRICACAO = B.ANO_FABRICACAO and MID(empl_2015_2017.DATA_EMPLACAMENTO, '5', '2') = B.MES AND empl_2015_2017.estado = B.estado and empl_2015_2017.MUNICIPIO = B.MUNICIPIO
-        where empl_2015_2017.MARCA = 'FIAT'
-      GROUP BY
-        empl_2015_2017.estado,
-        empl_2015_2017.MUNICIPIO,
-	empl_2015_2017.MARCA
-
-    
-    `
-
-    console.log(sql)
-    
-    conn.query(sql, function(err, rows, fields){
-      
-      if(err) throw err
-
-      res.send(rows)
-  
+    db.interested.push({
+      nome,
+      idImovel
     })
 
-  })
-
-  app.get('/top5_comparativo_mes_concorrencia/:ano/:mes', function(req, res){
-
-    var conn = require('./../libs/connectdb.js')()
-
-    var ano = req.params.ano
-    var mes = req.params.mes
-
-    var sql  = `
-
-      SELECT
-        empl_2015_2017.estado,
-        empl_2015_2017.MUNICIPIO,
-        empl_2015_2017.MARCA,
-        count(empl_2015_2017.ESTADO) AS TOTAL,
-      B.TOTAL AS TOTALGERAL
-      FROM
-      empl_2015_2017
-      INNER JOIN
-        (
-          SELECT
-            ANO_FABRICACAO,
-            MID(DATA_EMPLACAMENTO, '5', '2') AS MES,
-            estado,
-            MUNICIPIO,
-            count(estado) AS TOTAL
-          FROM
-            empl_2015_2017
-          where ANO_FABRICACAO = '${ano}' AND MID(DATA_EMPLACAMENTO, '5', '2') = '${mes}'
-          GROUP BY ANO_FABRICACAO, 
-          MID(DATA_EMPLACAMENTO, '5', '2'), estado, MUNICIPIO
-          ORDER BY count(estado) DESC
-          LIMIT 5
-        ) as B
-        ON empl_2015_2017.ANO_FABRICACAO = B.ANO_FABRICACAO and MID(empl_2015_2017.DATA_EMPLACAMENTO, '5', '2') = B.MES AND empl_2015_2017.estado = B.estado and empl_2015_2017.MUNICIPIO = B.MUNICIPIO
-        where empl_2015_2017.MARCA <> 'FIAT'
-      GROUP BY
-        empl_2015_2017.estado,
-        empl_2015_2017.MUNICIPIO,
-      	empl_2015_2017.MARCA
-    
-    `
-
-    console.log(sql)
-    
-    conn.query(sql, function(err, rows, fields){
-      
-      if(err) throw err
-
-      res.send(rows)
-  
+    var interested = db.interested.filter(function(value){
+      return value.idImovel == idImovel
     })
 
+    var totalInterested = interested.length
+
+    // var property = db.property.filter(function(value){
+    //   return value.id == idImovel ? value : null
+    // })
+
+    var curProperty = ''
+
+    property.forEach(function(value, index){
+      if(value.id == idImovel){
+        curProperty = value
+      }
+    })
+
+    console.log(totalInterested)
+
+    if(curProperty.capacity < totalInterested){
+      console.log('Capacidade do imovel atingida')
+    }
+    else if(curProperty.capacity == totalInterested){
+      
+      property.forEach(function(value, index){
+
+        console.log(value.id, idImovel)
+
+        if(value.id == idImovel){
+          console.log('Alugado !')
+          value.alugado = true
+          db.novoContrato = 1
+        }
+      })
+
+    }
+
+    console.log(curProperty)
+    console.log(interested)
+
+    res.send('1')
+
+  })
+
+  app.get('/get_interest', (req, res) => {
+
+    res.send(db.interested)
+
+  })
+
+  app.post('/break_contract', (req, res) => {
+   
+
+  })
+
+  app.get('/check_new_contract', (req, res) => {
+
+    if(db.novoContrato == 0){
+      res.send('0')
+    }
+    else{
+      db.novoContrato = 0
+      res.send('1')
+    }
+
+  })
+
+  app.get('/get_properties', (req, res) => {
+    res.send(db.property)
   })
 
   app.post('/top5_comparativo_mes_concorrencia_v2', function(req, res){
 
-    var conn = require('./../libs/connectdb.js')()
 
     var ano = req.body.ano
     var mes = req.body.mes
@@ -227,7 +287,6 @@ module.exports = function(app) {
 
   app.get('/obter_dividas/:cpf', function(req, res){
 
-    var conn = require('./../libs/connectdb.js')()
 
     var cpf = req.params.cpf
     var sql  = "select * from tbl_dividas where cpf='" + cpf + "'"
@@ -248,7 +307,6 @@ module.exports = function(app) {
 
   app.get('/obter_carteiras/:player_cobranca/:categoria_score', function(req, res){
 
-    var conn = require('./../libs/connectdb.js')()
 
     var playerCobranca = req.params.player_cobranca
     var categoriaScore = req.params.categoria_score
@@ -270,8 +328,6 @@ module.exports = function(app) {
 
     var idCarteira = req.body.id_carteira
     var valorInvestimento = req.body.valor_investimento
-
-    var conn = require('./../libs/connectdb.js')()
 
     var sql = "INSERT tbl_carteiras_investidas SET id_carteira=" + idCarteira + ", valor_investimento="+ valorInvestimento
     conn.query(sql, function(err, rows, fields){
