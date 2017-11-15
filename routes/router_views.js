@@ -157,7 +157,7 @@ module.exports = function(app) {
         if(value.id == idImovel){
           console.log('Alugado !')
           value.alugado = true
-          value.contrato = getRandomArbitrary(15000, 10000)
+          value.contrato = getRandomArbitrary(15000000, 10000000)
           db.novoContrato = idImovel
         }
       })
