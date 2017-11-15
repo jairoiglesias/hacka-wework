@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>rentSplit</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet" />
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="assets/css/paper-dashboard.css" rel="stylesheet" />
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+            <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="index.html" class="simple-text">
+                        <img src="./assets/img/logo.png" alt="" width="35" height="35" style="margin-right: 10px;"> rentSplit
+                    </a>
+                </div>
+
+                <ul class="nav">
+                    <li>
+                        <a href="index.html">
+                            <i class="ti-panel"></i>
+                            <p>Analytics</p>
+                        </a>
+                    </li>
+
+                    <li class="active">
+                        <a href="table.html">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Contratos</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-panel">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar bar1"></span>
+                            <span class="icon-bar bar2"></span>
+                            <span class="icon-bar bar3"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Contratos</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-shift-right-alt"></i>
+                                    <p>Sair</p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Ultimos contratos gerados</h4>
+                                    <p class="category">Aqui é possivel verificar os ultimos contratos gerados pela plataforma</p>
+                                </div>
+                                <div class="content table-responsive table-full-width">
+                                    <table class="table table-striped" id="contratos">
+                                        <thead>
+                                            <th class="text-center">N* do Contrato</th>
+                                            <th class="text-center">Endereço</th>
+                                            <th class="text-center">Qtde Moradores</th>
+                                            <th class="text-center">Valor</th>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <a class="contract text-center" data-toggle="modal" data-target="#myModal">
+                                                        <span class="text-center">1123431232</span>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">Rua Padre Machado, 703</td>
+                                                <td class="text-center">
+                                                    3
+                                                </td>
+                                                <td class="text-center">R$ 1400,00</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class=" text-center text-center" data-toggle="modal" data-target="#myModal">232423442</a>
+                                                </td>
+                                                <td class="text-center">Av. Doutor Augusto de Toledo, 1348 </td>
+                                                <td class="text-center">4</td>
+                                                <td class="text-center">R$ 2400,00</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class=" text-center text-center" data-toggle="modal" data-target="#myModal">4321423433</a>
+                                                </td>
+                                                <td class="text-center">Rua Agostinho Gomes, 2695 </td>
+                                                <td class="text-center">3</td>
+                                                <td class="text-center">R$ 3600,00</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class=" text-center text-center" data-toggle="modal" data-target="#myModal">78234657</a>
+                                                </td>
+                                                <td class="text-center">Rua Capitão Macedo, 312 </td>
+                                                <td class="text-center">3</td>
+                                                <td class="text-center"> R$ 3400,00</td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <a class="contract text-center" data-toggle="modal" data-target="#myModal">1123431232</a>
+                                                </td>
+                                                <td class="text-center">Rua Padre Machado, 703</td>
+                                                <td class="text-center">
+                                                    3
+                                                </td>
+                                                <td class="text-center">R$ 2200,00</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class="contract text-center" data-toggle="modal" data-target="#myModal">232423442</a>
+                                                </td>
+                                                <td class="text-center">Av. Doutor Augusto de Toledo, 1348 </td>
+                                                <td class="text-center">4</td>
+                                                <td class="text-center">R$ 3500,00</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class="contract text-center" data-toggle="modal" data-target="#myModal">4321423433</a>
+                                                </td>
+                                                <td class="text-center">Rua Agostinho Gomes, 2695 </td>
+                                                <td class="text-center">3</td>
+                                                <td class="text-center">R$ 1800,00</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class="contract text-center" data-toggle="modal" data-target="#myModal">78234657</a>
+                                                </td>
+                                                <td class="text-center">Rua Capitão Macedo, 312 </td>
+                                                <td class="text-center">3</td>
+                                                <td class="text-center">R$ 2400,00</td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <a class="contract text-center" data-toggle="modal" data-target="#myModal">1123431232</a>
+                                                </td>
+                                                <td class="text-center">Rua Padre Machado, 703</td>
+                                                <td class="text-center">
+                                                    3
+                                                </td class="text-center">
+                                                <td class="text-center">R$ 3000,00</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class="contract text-center" data-toggle="modal" data-target="#myModal">232423442</a>
+                                                </td>
+                                                <td class="text-center">Av. Doutor Augusto de Toledo, 1348 </td>
+                                                <td class="text-center">4</td>
+                                                <td class="text-center">R$ 3100,00</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class="contract text-center" data-toggle="modal" data-target="#myModal">4321423433</a>
+                                                </td>
+                                                <td class="text-center">Rua Agostinho Gomes, 2695 </td>
+                                                <td class="text-center">3</td>
+                                                <td class="text-center">R$ 2800,00</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class="contract text-center" data-toggle="modal" data-target="#myModal">78234657</a>
+                                                </td>
+                                                <td class="text-center">Rua Capitão Macedo, 312 </td>
+                                                <td class="text-center">3</td>
+                                                <td class="text-center">R$ 3200,00</td>
+
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Contrato de locaçao</h4>
+                </div>
+                <div class="modal-body">
+                    <p>No presente instrumento de Contrato de Locação Residencial, as partes previamente qualificadas têm entre
+                        si, como justo e contratado o quanto segue: 1.ª) Os aluguéis mensais deverão ser pagos mensalmente
+                        pelo locatário (a) diretamente em nosso escritório _________________, sito à __________________________________________________,
+                        CEP _______, fone ___________ . Parágrafo 1.º - Independente da data do início da locação, o aluguel
+                        vencerá sempre no último dia de cada mês, devendo, portanto, ser pago até o dia ________ de cada
+                        mês. Parágrafo 2.º - Durante e após a vigência do presente contrato, os aluguéis serão reajustados
+                        semestralmente de acordo com a variação do IGP/FGV (Índice Geral de Preços da Fundação Getúlio Vargas).
+                        Na falta do aludido indexador, na sua extinção ou se, por algum motivo, tornar-se impraticável sua
+                        aplicação, os aluguéis passarão a ser reajustados pelo IGP-M/FGV (Índice Geral de Preços do Mercado,
+                        da Fundação Getúlio Vargas), ou por outro indicador autorizado pela legislação em vigor, cuja escolha
+                        ficara a critério do locador; Parágrafo 3.º - Em caso de mora do locatário (a) no pagamento do aluguel
+                        e encargos convencionados, a importância devida será acrescida da multa de 2% (dois por cento), correção
+                        monetária pro rata die, e juros moratórios de 1% (um por cento) ao mês; 2.ª) Correrão por conta do(a)
+                        locatário(a), a partir da presente data, todas as despesas relativas ao consumo de água, luz, força,
+                        calefação e gás consumidos no imóvel, bem como os tributos e impostos municipais, estaduais e federais,
+                        que venham a recair sobre o imóvel locado, os quais serão pagos pelo(a) locatário(a) sempre na data
+                        de seus respectivos vencimentos, qualquer que seja ou venha a ser o sistema de cobrança; 3.ª) Por
+                        si ou por pessoa de sua confiança poderá o(a) locador(a) visitar o imóvel locado, a fim de se certificar
+                        do tratamento dispensado ao imóvel pelo(a) locatário (a); 4.ª) Se o imóvel for desapropriado na vigência
+                        da locação, ficará o(a) locador(a) exonerado(a) de toda e qualquer responsabilidade, que passará
+                        ao expropriador, somente contra quem poderá agir o(a) locatário(a); 5.ª) Em caso de incêndio ou qualquer
+                        acidente ocorrido sem culpa de qualquer das partes, que obrigue a reconstrução do prédio, a locação
+                        ficará rescindida e automaticamente desobrigados os contratantes das cláusulas e condições deste
+                        documento; 6.ª) O(a) locador(a) fará seguro do imóvel contra incêndio em companhia de sua livre escolha,
+                        durante todo o prazo da locação, correndo por conta do(a) locatário(a) todas as despesas decorrentes,
+                        tais como: prêmios, apólices, suas renovações e seguro complementar, ficando também o(a) locatário(a)
+                        responsável pela eventual modificação da atual taxa do referido seguro, em virtude da ocupação que
+                        vier a ser dada ao imóvel ora locado. Os pagamento deverão ser feitos imediatamente e por ocasião
+                        da exibição dos documentos comprobatórios pelo(a) locador(a), sob pena do(a) locatário(a) incorrer
+                        em infração contratual. 7.ª) Por ocasião da desocupação do imóvel e, por ocasião da entrega das chaves,
+                        deverá o(a) locatário(a) exibir os comprovantes de quitação das contas de luz, água, gás, telefone
+                        etc e demais encargos que recaiam sobre o imóvel e que sejam de sua responsabilidade quanto ao pagamento;
+                        8.ª) A parte que infringir o presente contrato, em qualquer de suas cláusulas, pagará à outra multa
+                        de 03 (três) aluguéis vigentes na época, a qual será devida sempre por inteiro e por via de ação
+                        executiva, nos termos do artigo 1533 do Código Civil e artigo 585, itens II e IV do Código de Processo
+                        Civil, os quais serão aplicados ao caso, seja qual for o tempo decorrido do prazo avençado e sem
+                        prejuízo para a parte inocente do direito de exigir o cumprimento do contrato ou de considerá-lo
+                        rescindido; Parágrafo único – O pagamento da multa não exime o(a) locatário(a) e o(s) fiador(es)
+                        no caso de rescisão, da obrigação de pagarem os aluguéis vencidos ou vincendos, nem de ressarcir
+                        os danos eventualmente causados ao imóvel; 9.ª) Para as questões oriundas do presente contrato fica
+                        eleito desde já o foro da situação do imóvel, com renúncia expressa de qualquer outro por mais privilegiado
+                        que seja ou venha a ser. A parte vencida pagará todas as despesas judiciais e extrajudiciais que
+                        se verificarem, além dos honorários do advogado que a parte vencedora constituir em defesa de seus
+                        direitos; 15.ª) O(a) locatário(a) será responsável pela multa, juros e demais incidências provenientes
+                        de sua demora em entregar a(o) locador(a), qualquer intimação dos poderes públicos ou quaisquer comunicações
+                        que digam respeito ao imóvel e que sejam de responsabilidade do(a) locador(a); 16.ª) A infração a
+                        qualquer das cláusulas do presente contrato constituirá automaticamente em mora a parte infratora,
+                        sem necessidade de interpelação, notificação ou protesto judicial, rescindindo-se o contrato de pleno
+                        direito, salvo se assim não desejar a parte inocente que poderá exigir o seu cumprimento até o final,
+                        sem que isso signifique novação contratual e sem prejuízo da cobrança da multa a quem tem direito;
+                        Parágrafo único – A eventual demora que ocorra até que a parte inocente providencie judicialmente
+                        ou não a defesa de seus direitos, jamais poderá ser entendida como concordância com a infração verificada;
+                        17.ª) Em caso de locação por prazo indeterminado, o(a) locatário(a) poderá dar por findo o contrato
+                        desde que comunique essa intenção a(o) locador(a) com 30 (trinta) dias de antecedência, através de
+                        correspondência comprovadamente entregue; 18.ª) A presente locação reger-se-á pela Lei 8.245 (Lei
+                        do Inquilinato), de 18 de outubro de 1991; 19.ª) As partes contratantes autorizam desde já que em
+                        caso de procedimentos judiciais, as citações, intimações e notificações poderão ser realizadas na
+                        forma prevista no artigo 58, inciso IV, da Lei nº 8.245, de 18 de outubro de 1991. E, por estarem
+                        assim de pleno e irrevogável acordo, as partes declaram que tomaram ciência de todas as cláusulas
+                        constantes no presente contrato, analisando-as em todos os seus termos, concordando com as mesmas,
+                        assinando o presente instrumento elaborado em 3(três) vias, o qual é também assinado por duas testemunhas.
+                        São Paulo, _______ de __________________ de 20___. Locador(a): _________________________________________________________
+                        Locatário(a): _______________________________________________________ </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+
+<!--   Core JS Files   -->
+<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="assets/js/bootstrap-checkbox-radio.js"></script>
+
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+<script src="assets/js/paper-dashboard.js"></script>
+
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="assets/js/demo.js"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        function addItem(item) {
+
+            var html = `
+            
+            <tr>
+                <td>
+                    <a class="contract" data-toggle="modal" data-target="#myModal">${item.contrato}</a>
+                </td>
+                <td>${item.endereco}</td>
+                <td>
+                    ${item.capacity}
+                </td>
+                <td>${item.valor}</td>
+                <td>
+                    <i class="ti-close" style="color: red;"></i>
+                </td>
+            </tr>
+            
+            `
+
+            $('#contratos tbody').prepend(html)
+
+        }
+
+        setInterval(function () {
+
+            var promise = $.ajax({
+                url: 'https://hacka-wework.herokuapp.com/check_new_contract'
+            })
+
+            promise.then(function (result) {
+
+                if (result != 0) {
+                    $.notify('Novo Contrato Realizado !!!')
+                    console.log(result)
+
+                    addItem(result)
+                }
+
+            })
+
+
+        }, 1000)
+
+    })
+
+</script>
+
+
+</html>
