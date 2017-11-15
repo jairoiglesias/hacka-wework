@@ -9,85 +9,90 @@ db.property = []
 db.contracts = []
 db.novoContrato = 0
 
-db.property.push(
-  {
-    id: 1,
-    endereco: 'Rua Capitão Macedo, 42 - Vila Clementino',
-    valor: 3000,
-    alugado: false,
-    capacity: 3
-  },
-  {
-    id: 2,
-    endereco: 'Rua Arnold Astor Ferreira, 158 - Morumbi',
-    valor: 4200,
-    alugado: true,
-    capacity: 3
-  },
-  {
-    id: 3,
-    endereco: 'Avenida Joao Dias, 56 - Ana Rosa',
-    valor: 3000,
-    alugado: false,
-    capacity: 2
-  },
-  {
-    id: 4,
-    endereco: 'Rua Elionor Arantes, 1852 - Santo Amaro',
-    valor: 1500,
-    alugado: false,
-    capacity: 2
-  },
-  {
-    id: 5,
-    endereco: 'Rua Antonio Gilmedes, 147 - Jabaquara',
-    valor: 2200,
-    alugado: true,
-    capacity: 3
-  },
-  {
-    id: 6,
-    endereco: 'Avenida Sergio Lobo, 23 - Jabaquara',
-    valor: 1620,
-    alugado: true,
-    capacity: 2
-  },
-  {
-    id: 7,
-    endereco: 'Rua Tartaruga, 266 - São Caetano',
-    valor: 3900,
-    alugado: false,
-    capacity: 4
-  },
-  {
-    id: 8,
-    endereco: 'Rua Bundança, 39 - Tatuapé',
-    valor: 2500,
-    alugado: true,
-    capacity: 3
-  },
-  {
-    id: 9,
-    endereco: 'Avenida da Vitamina, 242 - Penha',
-    valor: 2500,
-    alugado: true,
-    capacity: 3
-  },
-  {
-    id: 10,
-    endereco: 'Rua João Carlos Macedo, 42 - Santa Cruz',
-    valor: 2600,
-    alugado: false,
-    capacity: 2
-  },
-  {
-    id: 11,
-    endereco: 'Rua Magalhaes, 180 - Vila Clementino',
-    valor: 1400,
-    alugado: true,
-    capacity: 2
-  }
-)
+function populateDb(){
+
+  db.property.push(
+    {
+      id: 1,
+      endereco: 'Rua Capitão Macedo, 42 - Vila Clementino',
+      valor: 3000,
+      alugado: false,
+      capacity: 3
+    },
+    {
+      id: 2,
+      endereco: 'Rua Arnold Astor Ferreira, 158 - Morumbi',
+      valor: 4200,
+      alugado: true,
+      capacity: 3
+    },
+    {
+      id: 3,
+      endereco: 'Avenida Joao Dias, 56 - Ana Rosa',
+      valor: 3000,
+      alugado: false,
+      capacity: 2
+    },
+    {
+      id: 4,
+      endereco: 'Rua Elionor Arantes, 1852 - Santo Amaro',
+      valor: 1500,
+      alugado: false,
+      capacity: 2
+    },
+    {
+      id: 5,
+      endereco: 'Rua Antonio Gilmedes, 147 - Jabaquara',
+      valor: 2200,
+      alugado: true,
+      capacity: 3
+    },
+    {
+      id: 6,
+      endereco: 'Avenida Sergio Lobo, 23 - Jabaquara',
+      valor: 1620,
+      alugado: true,
+      capacity: 2
+    },
+    {
+      id: 7,
+      endereco: 'Rua Tartaruga, 266 - São Caetano',
+      valor: 3900,
+      alugado: false,
+      capacity: 4
+    },
+    {
+      id: 8,
+      endereco: 'Rua Bundança, 39 - Tatuapé',
+      valor: 2500,
+      alugado: true,
+      capacity: 3
+    },
+    {
+      id: 9,
+      endereco: 'Avenida da Vitamina, 242 - Penha',
+      valor: 2500,
+      alugado: true,
+      capacity: 3
+    },
+    {
+      id: 10,
+      endereco: 'Rua João Carlos Macedo, 42 - Santa Cruz',
+      valor: 2600,
+      alugado: false,
+      capacity: 2
+    },
+    {
+      id: 11,
+      endereco: 'Rua Magalhaes, 180 - Vila Clementino',
+      valor: 1400,
+      alugado: true,
+      capacity: 2
+    }
+  )
+}
+
+populateDb()
 
 module.exports = function(app) {
 
@@ -112,10 +117,6 @@ module.exports = function(app) {
     })
 
     var totalInterested = interested.length
-
-    // var property = db.property.filter(function(value){
-    //   return value.id == idImovel ? value : null
-    // })
 
     var curProperty = ''
 
@@ -175,7 +176,14 @@ module.exports = function(app) {
 
   })
 
-  app.get('/get_properties', (req, res) => {
+  app.get('restart', (req, res) => {
+
+    db.property = []
+    populateDb()
+
+  })
+
+  app.get('/', (req, res) => {
     res.send(db.property)
   })
 
