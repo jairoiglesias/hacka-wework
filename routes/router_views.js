@@ -91,6 +91,10 @@ db.property.push(
 
 module.exports = function(app) {
 
+  app.get('/', (req, res) => {
+    res.send('ola turma')
+  })
+
   // Adicionar um interesse em um imovel
   app.post('/add_interest', (req, res) => {
 
