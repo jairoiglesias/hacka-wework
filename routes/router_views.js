@@ -9,6 +9,12 @@ db.property = []
 db.contracts = []
 db.novoContrato = 0
 
+function getRandomArbitrary(min, max) {
+
+  return Math.floor(Math.random() * (max - min) + min)
+
+}
+
 function populateDb(){
 
   db.property.push(
@@ -17,77 +23,88 @@ function populateDb(){
       endereco: 'Rua Capitão Macedo, 42 - Vila Clementino',
       valor: 3000,
       alugado: false,
-      capacity: 3
+      capacity: 3,
+      contrato: ''
     },
     {
       id: 2,
       endereco: 'Rua Arnold Astor Ferreira, 158 - Morumbi',
       valor: 4200,
       alugado: true,
-      capacity: 3
+      capacity: 3,
+      contrato: ''
     },
     {
       id: 3,
       endereco: 'Avenida Joao Dias, 56 - Ana Rosa',
       valor: 3000,
       alugado: false,
-      capacity: 2
+      capacity: 2,
+      contrato: ''
     },
     {
       id: 4,
       endereco: 'Rua Elionor Arantes, 1852 - Santo Amaro',
       valor: 1500,
       alugado: false,
-      capacity: 2
+      capacity: 2,
+      contrato: ''
     },
     {
       id: 5,
       endereco: 'Rua Antonio Gilmedes, 147 - Jabaquara',
       valor: 2200,
       alugado: true,
-      capacity: 3
+      capacity: 3,
+      contrato: ''
     },
     {
       id: 6,
       endereco: 'Avenida Sergio Lobo, 23 - Jabaquara',
       valor: 1620,
       alugado: true,
-      capacity: 2
+      capacity: 2,
+      contrato: ''
     },
     {
       id: 7,
       endereco: 'Rua Tartaruga, 266 - São Caetano',
       valor: 3900,
       alugado: false,
-      capacity: 4
+      capacity: 4,
+      contrato: ''
     },
     {
       id: 8,
       endereco: 'Rua Bundança, 39 - Tatuapé',
       valor: 2500,
       alugado: true,
-      capacity: 3
+      capacity: 3,
+      contrato: ''
     },
     {
       id: 9,
       endereco: 'Avenida da Vitamina, 242 - Penha',
       valor: 2500,
       alugado: true,
-      capacity: 3
+      capacity: 3,
+      contrato: ''
     },
     {
       id: 10,
       endereco: 'Rua João Carlos Macedo, 42 - Santa Cruz',
       valor: 2600,
       alugado: false,
-      capacity: 2
+      capacity: 2,
+      contrato: ''
     },
     {
       id: 11,
       endereco: 'Rua Magalhaes, 180 - Vila Clementino',
       valor: 1400,
       alugado: true,
-      capacity: 2
+      capacity: 2,
+      contrato: ''
     }
   )
 }
@@ -140,6 +157,7 @@ module.exports = function(app) {
         if(value.id == idImovel){
           console.log('Alugado !')
           value.alugado = true
+          value.contrato = getRandomArbitrary()
           db.novoContrato = idImovel
         }
       })
