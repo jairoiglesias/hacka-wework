@@ -200,7 +200,7 @@ module.exports = function(app) {
 
   })
 
-  app.get('restart', (req, res) => {
+  app.get('/restart', (req, res) => {
 
     db.property = []
     populateDb()
