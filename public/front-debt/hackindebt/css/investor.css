@@ -1,0 +1,17 @@
+.card-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.purple-color {
+  color: #4500b7;
+}
+
+.custom-card-panel {
+  background-color: #4500b7;
+  
+}
+
+.text-card-white {
+  border-left-color: #fafeff ;
+} 

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parallax Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="./css/user.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+  <style>
+
+    .noDisplay{
+      display: none;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- navbar -->
+  <nav style="background-color: #4500b7;">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">
+        <img src="./img/logo.png" alt="" height="50" style="margin-top: 10px; margin-left: 10px;">
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <a href="acordos.html" class="text-white">Meus acordos</a>
+        </li>
+        <li>
+          <a href="index.html" class="text-white">Sair</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- navbar -->
+
+  <div class="section cards">
+
+    <div class="row">
+      <div class="col s6">
+        
+        <h5>Dividas Encontradas</h5>
+
+        <h6>Valor Total: R$ 6000,00 </h6>
+
+        <div class="debt-cards">
+
+          <div class="row">
+            <div class="col s6">
+              <div class="row">
+                <div class="col s12">
+                  <div class="card small">
+                    <div class="card-content white-text">
+                      <img src="./img/sky.png" alt="" class="responsive-img">
+                    </div>
+                    <div class="card-action">
+                      Valor : 80,00
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s6">
+              <div class="row">
+                <div class="col s12">
+                  <div class="card small">
+                    <div class="card-content white-text">
+                      <img src="./img/avon.png" alt="" class="responsive-img">
+                    </div>
+                    <div class="card-action">
+                   
+                            Valor : 123,69 
+                       
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s6">
+              <div class="row">
+                <div class="col s12">
+                  <div class="card small">
+                    <div class="card-content white-text">
+                      <img src="./img/volks.jpg" alt="" height="180px" width="180px">
+                    </div>
+                    <div class="card-action">
+                      Valor : R$ 3.400,00
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s6">
+              <div class="row">
+                <div class="col s12">
+                  <div class="card small">
+                    <div class="card-content white-text">
+                      <img src="./img/nextel.png" alt="" class="responsive-img">
+                    </div>
+                    <div class="card-action">
+                      Valor : 180,00
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!" style="background-color: #4500b7;">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          </ul>
+
+          
+        </div>
+      </div>
+
+      <div class="col s6">
+        <div id="frm_solicitar_analise">
+          <p>Bacana, presicamos de mais algumas informações para que nossa inteligencia consiga executar a melhor analise</p>
+          <div class="card" style="padding: 10px;">
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input placeholder="Salario Bruto" id="first_name" type="text" class="validate">
+                    <label for="first_name">Renda</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate" placeholder="Empresa em que trabalha">
+                    <label for="last_name">Empresa </label>
+                  </div>
+                </div>
+
+                <small style="margin-right: 10px;">Envie-nos um comprovante de renda</small>
+                <a href=""> <i class="material-icons" style="margin-top: 10px;">picture_as_pdf</i> </a>
+              </form>
+            </div>
+
+            <a id="solicitar_analise" class="waves-effect waves-light btn" style="margin-top: 30px; float: right; background-color: #4500b7; ">Solicitar Analise </a>
+          </div>
+        </div>
+
+        <br><br>
+        <div id="loader" class="loader noDisplay">
+          <p>Aguarde, nossa inteligencia esta criando a melhor proposta . . . </p>
+          <div class="progress">
+            <div class="indeterminate"></div>
+          </div>
+        </div> 
+
+        <div id="analise" class="card pos-analise noDisplay" style="padding: 10px;">
+
+          <p>Com base na analise que fizemos em cima do valor informado, identificamos que o melhor valor  XXXXX, deseja continuar com essa proposta ou ... </p>
+
+          <form action="#">
+
+            <p>
+              <input type="checkbox" id="test5" />
+              <label for="test5">R$600,00 + 480 x 5</label>
+            </p>
+            <p>
+              <input type="checkbox" id="test6" />
+              <label for="test6">R$750,00 + 204,55 x 11</label>
+            </p>
+
+            <p>
+              <input type="checkbox" id="test7" />
+              <label for="test7">R$900,00 + 123,51 x 17</label>
+            </p>
+            <p>
+
+            <p>
+              <input type="checkbox" id="test9" />
+              <label for="test9">Informar outro valor</label>
+              <div class="row">
+                <div class="col s4">
+                  <input type="text">
+                </div>
+              </div>
+              
+            </p>
+
+
+
+
+
+          </form>
+
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal4" style="margin-top: 30px; float: right; background-color: #4500b7;">Fechar acordo </a>
+        </div>       
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+<div id="modal4" class="modal">
+  <div class="modal-content">
+    <h4>Termos e condições</h4>
+    <p>Leia com atenção este contrato </p>
+
+    <p>Cadastro
+Os usuários que desejam utilizar os Aplicativos precisam obrigatoriamente preencher os campos de cadastro e fornecer informações válidas e corretas. As informações prestadas pelos usuários poderão ser confirmadas pela MEREO e, em caso de não confirmação, a utilização dos Aplicativos será bloqueada a exclusivo critério da MEREO.
+
+As informações do cadastro são de exclusiva responsabilidade de quem as inseriu. No caso de acarretarem danos ou prejuízo de qualquer espécie, sanções legais podem ser tomadas pela MEREO a fim de resguardar seus interesses e a integridade dos outros usuários do sistema.
+
+Objeto
+O sistema VOLTO SEMPRE (incluindo o Aplicativo, o Website e outras plataformas como e websites de terceiros) consiste em uma plataforma que promove e otimiza o relacionamento comercial entre Parceiros e Participantes do programa, através de um sistema de fidelização baseados em pontos e recompensas chamado VOLTO SEMPRE.
+
+Pelo aplicativo a MEREO permite ao usuário localizar estabelecimentos parceiros onde obterá benefícios pré-determinados pelo consumo naquele local.
+
+Os Estabelecimentos Parceiros, por sua vez, utilizam a plataforma como um canal de publicidade e promoção para aproximarem-se de usuários participantes do programa VOLTO SEMPRE que desejam contratar seus serviços.
+
+Limitações de Responsabilidade
+A MEREO não presta serviços ou vende nenhum tipo de produtos ofertados pelos parceiros, servindo apenas e tão somente como ferramenta promocional entre Usuários e Parceiros. Quaisquer defeitos, perdas ou danos relativos aos serviços ou produtos oferecidos pelos parceiros são de responsabilidade exclusiva destes.
+
+O Usuário reconhece e concorda que a MEREO não garante a qualidade ou quantidade dos produtos e serviços ofertados pelos parceiros, que nos limites da Lei responsabilizam-se pela oferta de seus produtos e serviços.
+
+A MEREO Também não se responsabiliza:
+
+pela disponibilidade do sistema;
+por erros ou inconsistências no fornecimento de informações relativas ao geoposicionamento (gps) e aos mapas, que são produzidas por terceiros e integradas ao aplicativo somente para trazer mais conveniência ao usuário;
+Propriedade Intelectual
+O Conteúdo deste aplicativo e do website, bem como as marcas VOLTO SEMPRE e outras nominativas e mistas, estão protegidos pela Lei brasileira e pela legislação estrangeira. A reprodução, edição, distribuição bem como o uso de qualquer informação contida neste website fora de seu escopo original, requer a autorização por escritos dos proprietários do website ou do conteúdo em questão. Downloads e cópias deste aplicativo são permitidos somente para uso privado e em benefício dos utilizadores e participantes do programa Volto Sempre. O uso comercial ou para fins diversos do objetivo deste site, sem autorização expressa do proprietário, é vedado.
+
+Os direitos de autor do desenho e a arquitetura do Aplicativo estão reservados a MEREO. A MEREO detém os direitos de autor sobre o conteúdo publicado, salvo em caso de indicação em contrário por meio de um aviso de propriedade de um terceiro. As imagens e marcas registradas também estão protegidas por leis de propriedade intelectual no Brasil e no Exterior e não podem ser reproduzidas ou apropriadas de nenhuma forma sem a permissão por escrito dos seus respetivos proprietários.
+
+O usuário deve ainda verificar que todas as informações, dados, texto, software, música, som, fotografia, gráfico, vídeo ou outros materiais estão sob proteção legal das Leis de propriedade intelectual no Brasil e no exterior.
+
+Este aplicativo também protege e busca proteger o conteúdo dos sítios de parceiros e terceiros de violações as Lei de propriedade intelectual (copyrights). Contribuições de terceiros ao website terão autoria a eles atribuída. No entanto se qualquer violação for verificada pedimos que nos informem para que o conteúdo seja corrigido ou excluído imediatamente.
+
+São vedados quaisquer atos ou contribuições tendentes à descompilação, engenharia reversa, modificação das características, ampliação, alteração, mesclagem ou incorporação em quaisquer outros programas ou sistemas. Enfim, toda e qualquer forma de reprodução, total ou parcial, permanente, temporária ou provisória, de forma gratuita ou onerosa, sob quaisquer modalidades, formas ou títulos dos Aplicativos é expressamente vedada.
+
+
+
+.</p>
+  </div>
+  <div class="modal-footer">
+
+    <a class="waves-effect waves-light btn trigger-modal" href="modal5" style="margin-right: 10px; background-color: #ed184f; ">Conectar a sua conta do banco</a>
+
+
+
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Aceito os termos</a>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+<script src="./js/script.js"></script>
+
+  <script type="text/javascript">
+
+
+    $(document).ready(function(){
+
+      
+      $('#solicitar_analise').click(function(e){
+
+        e.preventDefault()
+
+        $('#frm_solicitar_analise').addClass('noDisplay')
+        $('#loader').removeClass('noDisplay')
+
+        setTimeout(function(){
+          $('#loader').addClass('noDisplay')
+           $('#analise').removeClass('noDisplay')
+
+        }, 3000)
+
+      })
+
+    })
+
+  </script>
+
+<!-- <small>Ou se preferir </small>
+  <a class="waves-effect waves-light btn" style="margin-right: 10px; background-color: #ed184f; ">Conectar a sua conta do banco</a> -->
+
+
+  </html>

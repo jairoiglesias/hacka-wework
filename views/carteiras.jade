@@ -1,0 +1,139 @@
+extends layout_login
+
+block content
+
+  style(type="text/css").
+    
+    #container_login{
+      margin:0 auto;
+    }
+
+    #carteiras{
+      display: flex;
+      justify-content: space-around;
+      margin: 25px;
+    }
+
+    .item:hover{
+      cursor: pointer;
+      background:rgba(63, 81, 181, 0.23);
+    }
+
+    .itemSelect{
+      background: rgba(63, 81, 181, 0.50);
+    }
+
+  
+  script(type="text/javascript").
+
+    $(document).ready(function(){
+
+      curId = 0
+
+      // Função para listar carteiras em uma tabela
+
+      function listaCarteiras(categoria_score, player_cobranca, idTable){
+
+        var promise = $.ajax({
+          url: 'obter_carteiras/'+player_cobranca+'/'+categoria_score
+        })
+
+        promise.then(function(rows){
+
+          var linhas = ''
+          linhas += '<h3>' + categoria_score + '</h3>'
+          linhas += '<table>'
+          linhas += '<tr>'
+          linhas += '<th>Valor Carteira</th>'
+          linhas += '<th>Percentual Retorno</th>'
+          linhas += '</tr>'
+
+          rows.forEach(function(row, index){
+
+            linhas += '<tr id="' + row.id_carteira + '" class="item">'
+            linhas += '<td>' + row.valor_carteira + '</td>'
+            linhas += '<td>' + row.percentual_retorno + '</td>'
+            linhas += '</tr>'
+
+          })
+
+          linhas += '</table>'
+
+          $(idTable).append(linhas)
+
+          $('#carteiras tr').click(function(e){
+
+            var text = $(this).find('td').eq(0).text()
+            
+            $('#carteira_selecionada').text(text)
+            curId = $(this).attr('id')
+
+            $('tr').removeClass('itemSelect')
+            $(this).addClass('itemSelect')
+
+          })
+
+        })
+
+      }
+
+      listaCarteiras('baixo', 'intervalor', '#score_baixo')
+      listaCarteiras('medio', 'intervalor', '#score_medio')
+      listaCarteiras('alto', 'intervalor', '#score_alto')
+
+      $('#player_cobranca').change(function(){
+
+        var playerCobranca = $(this).val()
+
+        listaCarteiras('baixo', playerCobranca, '#score_baixo')
+        listaCarteiras('medio', playerCobranca, '#score_baixo')
+        listaCarteiras('alto', playerCobranca, '#score_baixo')
+      
+
+      })
+
+      $('#frm_valor_investimento').submit(function(e){
+
+        e.preventDefault()
+
+        var valor_investimento = $('#valor_investimento').val()
+
+        var promise = $.ajax({
+          type: 'POST',
+          url: 'salva_valor_investimento',
+          data: {
+            'id_carteira' : curId,
+            'valor_investimento': valor_investimento
+          }
+        })
+
+        promise.then(function(result){
+
+          alertify.alert('Carteira investida com sucesso!', function(){
+            alertify.success('Carteira investida com sucesso!')
+          })
+
+        })
+
+      })
+      
+    })  
+
+  
+  div
+    select(id='player_cobranca')
+    hr
+    div(id='carteiras')
+      div(id='score_baixo')
+      div(id='score_medio')
+      div(id='score_alto')
+    hr
+    br
+    strong Carteira Selecionada: 
+    span(id='carteira_selecionada')
+    br
+    form(id='frm_valor_investimento')
+      div(class="input-field col s6")
+          input(id="valor_investimento" type="text" class="validate")
+          label(for="valor_investimento") Valor Investimento
+

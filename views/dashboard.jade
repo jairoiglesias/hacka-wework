@@ -1,0 +1,333 @@
+extends layout_login
+
+block content
+
+    script(type="text/javascript").
+  
+        $(document).ready(function(){
+
+            function updateChart(ano, mes){
+
+                setTimeout(function(){
+
+                    var result
+                    //- var categoriesFiat = ''
+                    //- var categoriesConcorrencia = ''
+
+                    // Recupera os dados da FIAT
+                    var promiseFiat = $.ajax({
+                        type:'get',
+                        url: 'top5_comparativo_mes_fiat/'+ano+'/'+mes,
+                    })
+
+                    promiseFiat.then(function(dadosFiat){
+
+                        result = dadosFiat
+
+                        var categoriesTemp = []
+
+                        dadosFiat.forEach(function(value, index){
+                                
+                            var item = value.estado + ' | ' + value.MUNICIPIO
+
+                            if(categoriesTemp.indexOf(item) == -1){
+                                categoriesTemp.push(item)
+                            }
+
+                        })
+
+                        var promiseConcorrencia = $.ajax({
+                            type:'post',
+                            url: 'top5_comparativo_mes_concorrencia_v2',
+                            data:{
+                                ano:ano,
+                                mes:mes,
+                                categories:JSON.stringify(categoriesTemp)
+                            }
+                        })
+
+                        promiseConcorrencia.then(function(dadosConcorrencia){
+
+                            //- result = result.concat(dadosConcorrencia)
+
+                            //- console.log(dadosConcorrencia)
+
+                            var categories = []
+                            var seriesFiat = []
+                            var series = []
+
+                            // Efetua o mapeamento de items da FIAT
+                            result.forEach(function(value, index){
+                                
+                                var item = value.estado + ' | ' + value.MUNICIPIO
+
+                                if(categories.indexOf(item) == -1){
+                                    categories.push(item)
+                                }
+
+                                if(value.MARCA == 'FIAT'){
+                                    seriesFiat.push(value.TOTAL)
+                                }
+
+                                //- if(value.MARCA != 'FIAT'){
+                                //-     seriesConcorrencia.push(value.TOTAL)
+                                //- }
+
+                            })
+
+                            series.push({
+                                name: 'FIAT',
+                                data: seriesFiat
+                            })
+
+                            //- console.log(series)
+
+                            var newCategorias = []
+
+                            categories.forEach(function(categoriaProc, index){
+
+                                var _categoriaProc = categoriaProc
+                                var _estado = _categoriaProc.split('|')[0].trim()
+                                var _municipio = _categoriaProc.split('|')[1].trim()
+
+                                console.log(_municipio)
+
+                                // Efetua o mapeamento de dados do TOP 5 concorrentes
+                                dadosConcorrencia.forEach(function(valueConc, index){
+
+                                    //- console.log(_municipio)
+                                    //- console.log(valueConc)
+                                    
+
+                                    var MUNICIPIO = valueConc.categoria[0].MUNICIPIO
+                                    var MARCA = valueConc.categoria[0].MARCA
+                                    
+                                    if(MUNICIPIO == _municipio){
+
+                                        var serieConc = []
+                                        
+                                        valueConc.categoria.forEach(function(valueCategoria, indexCategoria){
+                                            serieConc.push(valueCategoria.TOTAL)
+                                        })
+
+                                        series.push({
+                                            name: MARCA,
+                                            data: serieConc
+                                        })
+
+                                        
+                                    }
+                                })
+
+                            })
+
+
+                            console.log(series)
+
+                            var myChart = new Highcharts.chart('dashboard01', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Top5 Cidades'
+                                },
+                                subtitle: {
+                                    text: 'Comparativo com a concorrência'
+                                },
+                                xAxis: {
+                                    categories: categories,
+                                    crosshair: true
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: ''
+                                    }
+                                },
+                                tooltip: {
+                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                                },
+                                plotOptions: {
+                                    column: {
+                                        dataLabels: {
+                                        enabled: true
+                                        },
+                                        pointPadding: 0.2,
+                                        borderWidth: 0
+                                    },
+                                    series:{
+                                        cursor:'pointer',
+                                        point:{
+                                            events:{
+                                                click: function(){
+                                                    alert('hue')
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                series: series
+                            });
+                        })
+                        
+
+
+                    })
+                    
+
+                }, 0001)
+            
+                
+            }
+
+            //- var myChart = new Highcharts.chart('dashboard01', {
+            //-     chart: {
+            //-         type: 'column'
+            //-     },
+            //-     title: {
+            //-         text: 'Top5 Cidades'
+            //-     },
+            //-     subtitle: {
+            //-         text: 'Comparativo com a concorrência'
+            //-     },
+            //-     xAxis: {
+            //-         categories: '',
+            //-         crosshair: true
+            //-     },
+            //-     yAxis: {
+            //-         min: 0,
+            //-         title: {
+            //-             text: ''
+            //-         }
+            //-     },
+            //-     tooltip: {
+            //-         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            //-         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            //-             '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            //-         footerFormat: '</table>',
+            //-         shared: true,
+            //-         useHTML: true
+            //-     },
+            //-     plotOptions: {
+            //-         column: {
+            //-             dataLabels: {
+            //-             enabled: true
+            //-             },
+            //-             pointPadding: 0.2,
+            //-             borderWidth: 0
+            //-         }
+            //-     },
+            //-     series: ''
+            //- });
+
+            //- updateChart('2015','01')
+
+
+            $('#mes').change(function(){
+
+                var ano = $('#ano').val()
+                var mes = $('#mes').val()
+
+                $('#dashboard01').children().remove()
+                $('#dashboard01').append('Carregando ...')
+
+                updateChart(ano, mes)
+
+            })
+
+            // MAPA
+
+        Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_us_cities.csv', function(err, rows){
+            function unpack(rows, key) {
+                return rows.map(function(row) { return row[key]; });
+            }
+            var cityName = unpack(rows, 'name'),
+                cityPop = unpack(rows, 'pop'),
+                cityLat = unpack(rows, 'lat'),
+                cityLon = unpack(rows, 'lon'),
+                color = [,"rgb(255,65,54)","rgb(133,20,75)","rgb(255,133,27)","lightgrey"],
+                citySize = [],
+                hoverText = [],
+                scale = 50000;
+
+            for ( var i = 0 ; i < cityPop.length; i++) {
+                var currentSize = cityPop[i] / scale;
+                var currentText = cityName[i] + "<br>Population: " + cityPop[i];
+                citySize.push(currentSize);
+                hoverText.push(currentText);
+            }
+
+            var data = [{
+                type: 'scattergeo',
+                locationmode: 'USA-states',
+                lat: cityLat,
+                lon: cityLon,
+                text: hoverText,
+                hoverinfo: 'text',
+                marker: {
+                    size: citySize,
+                    line: {
+                    color: 'black',
+                    width: 2
+                    },
+                    
+                }
+            }];
+
+            var layout = {
+                title: 'Tomada de decisão FIAT',
+                showlegend: false,
+                geo: {
+                scope: 'brasil',
+                projection: {
+                    type: 'albers usa'
+                },
+                showland: true,
+                landcolor: 'rgb(217, 217, 217)',
+                subunitwidth: 1,
+                countrywidth: 1,
+                subunitcolor: 'rgb(255,255,255)',
+                countrycolor: 'rgb(255,255,255)'
+                },
+            };
+
+            Plotly.plot(myDiv, data, layout, {showLink: false});
+        });
+        
+        })
+    br
+    br
+    div(class='container')
+        form
+            label Ano
+            select(id='ano')
+                option(value="2017") 2017
+                option(value="2016") 2016
+                option(value="2015") 2015
+            label Mês
+            select(id='mes')
+                option(value="01") 01
+                option(value="02") 02
+                option(value="03") 03
+                option(value="04") 04
+                option(value="05") 05
+                option(value="06") 06
+                option(value="07") 07
+                option(value="08") 08   
+                option(value="09") 09
+                option(value="10") 10
+                option(value="11") 11
+                option(value="12") 12
+    hr
+    div.container
+        div(id="dashboard01" style="width:90%")
+            strong Defina um periodo
+        hr
+        div(id="myDiv" style="width:90%")
+
+
